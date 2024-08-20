@@ -96,20 +96,20 @@ benchinit() {
 
 	if  [ ! -e './speedtest-cli/speedtest' ]; then
 		echo " Installing Speedtest-cli ..."
-		wget --no-check-certificate -qO speedtest.tgz https://cdn.jsdelivr.net/gh/oooldking/script@1.1.7/speedtest_cli/ookla-speedtest-1.0.0-$(uname -m)-linux.tgz > /dev/null 2>&1
+		wget --no-check-certificate -qO speedtest.tgz https://cdn.jsdelivr.net/gh/sijinhui/script/speedtest_cli/ookla-speedtest-1.0.0-$(uname -m)-linux.tgz > /dev/null 2>&1
 	fi
 	mkdir -p speedtest-cli && tar zxvf speedtest.tgz -C ./speedtest-cli/ > /dev/null 2>&1 && chmod a+rx ./speedtest-cli/speedtest
 
 	if  [ ! -e 'tools.py' ]; then
 		echo " Installing tools.py ..."
-		wget --no-check-certificate https://cdn.jsdelivr.net/gh/oooldking/script@1.1.7/tools.py > /dev/null 2>&1
+		wget --no-check-certificate https://cdn.jsdelivr.net/gh/sijinhui/script/tools.py > /dev/null 2>&1
 	fi
 	chmod a+rx tools.py
 
 	if  [ ! -e 'fast_com.py' ]; then
 		echo " Installing Fast.com-cli ..."
-		wget --no-check-certificate https://cdn.jsdelivr.net/gh/sanderjo/fast.com@master/fast_com.py > /dev/null 2>&1
-		wget --no-check-certificate https://cdn.jsdelivr.net/gh/sanderjo/fast.com@master/fast_com_example_usage.py > /dev/null 2>&1
+		wget --no-check-certificate https://cdn.jsdelivr.net/gh/sijinhui/script/fast_com.py > /dev/null 2>&1
+		wget --no-check-certificate https://cdn.jsdelivr.net/gh/sijinhui/script/fast_com_example_usage.py > /dev/null 2>&1
 	fi
 	chmod a+rx fast_com.py
 	chmod a+rx fast_com_example_usage.py
