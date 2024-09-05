@@ -8,6 +8,7 @@
 #
 # URL: https://www.oldking.net/350.html
 #
+set -x
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -69,7 +70,7 @@ benchinit() {
 	                	apt-get update > /dev/null 2>&1
 	                    apt-get -y install python > /dev/null 2>&1
 	                fi
-	        
+
 	fi
 
 	if  [ ! -e '/usr/bin/curl' ]; then
@@ -96,27 +97,27 @@ benchinit() {
 
 	if  [ ! -e './speedtest-cli/speedtest' ]; then
 		echo " Installing Speedtest-cli ..."
-		wget --no-check-certificate -qO speedtest.tgz https://cdn.jsdelivr.net/gh/sijinhui/script/speedtest_cli/ookla-speedtest-1.0.0-$(uname -m)-linux.tgz > /dev/null 2>&1
+		wget --no-check-certificate -qO speedtest.tgz https://cdn.si.icu/gh/sijinhui/script/speedtest_cli/ookla-speedtest-1.0.0-$(uname -m)-linux.tgz > /dev/null 2>&1
 	fi
 	mkdir -p speedtest-cli && tar zxvf speedtest.tgz -C ./speedtest-cli/ > /dev/null 2>&1 && chmod a+rx ./speedtest-cli/speedtest
 
 	if  [ ! -e 'tools.py' ]; then
 		echo " Installing tools.py ..."
-		wget --no-check-certificate https://cdn.jsdelivr.net/gh/sijinhui/script/tools.py > /dev/null 2>&1
+		wget --no-check-certificate https://cdn.si.icu/gh/sijinhui/script/tools.py > /dev/null 2>&1
 	fi
 	chmod a+rx tools.py
 
 	if  [ ! -e 'fast_com.py' ]; then
 		echo " Installing Fast.com-cli ..."
-		wget --no-check-certificate https://cdn.jsdelivr.net/gh/sijinhui/script/fast_com.py > /dev/null 2>&1
-		wget --no-check-certificate https://cdn.jsdelivr.net/gh/sijinhui/script/fast_com_example_usage.py > /dev/null 2>&1
+		wget --no-check-certificate https://cdn.si.icu/gh/sijinhui/fast.com/fast_com.py > /dev/null 2>&1
+		wget --no-check-certificate https://cdn.si.icu/gh/sijinhui/fast.com/fast_com_example_usage.py > /dev/null 2>&1
 	fi
 	chmod a+rx fast_com.py
 	chmod a+rx fast_com_example_usage.py
 
 	sleep 5
 
-	start=$(date +%s) 
+	start=$(date +%s)
 }
 
 get_opsy() {
@@ -198,13 +199,13 @@ print_speedtest_fast() {
     speed_test '27377' 'Beijing 5G   CT'
 	speed_test '24447' 'ShangHai 5G  CU'
 	speed_test '27249' 'Nanjing 5G   CM'
-	 
+
 	rm -rf speedtest*
 }
 
 speed_fast_com() {
 	temp=$(python fast_com_example_usage.py 2>&1)
-	is_down=$(echo "$temp" | grep 'Result') 
+	is_down=$(echo "$temp" | grep 'Result')
 		if [[ ${is_down} ]]; then
 	        temp1=$(echo "$temp" | awk -F ':' '/Result/{print $2}')
 	        temp2=$(echo "$temp1" | awk -F ' ' '/Mbps/{print $1}')
@@ -255,7 +256,7 @@ install_smart() {
 	    else
 	    	apt-get update > /dev/null 2>&1
 	        apt-get -y install smartmontools > /dev/null 2>&1
-	    fi      
+	    fi
 	fi
 }
 
@@ -277,7 +278,7 @@ ip_info4(){
 		country=$(python tools.py geoip country)
 		city=$(python tools.py geoip city)
 		countryCode=$(python tools.py geoip countryCode)
-		region=$(python tools.py geoip regionName)	
+		region=$(python tools.py geoip regionName)
 	fi
 	if [ -z "$city" ]; then
 		city=${region}
@@ -308,7 +309,7 @@ virt_check(){
 		sys_product=""
 		sys_ver=""
 	fi
-	
+
 	if grep docker /proc/1/cgroup -qa; then
 	    virtual="Docker"
 	elif grep lxc /proc/1/cgroup -qa; then
@@ -375,7 +376,7 @@ print_io() {
 	else
 		writemb=$(freedisk)
 	fi
-	
+
 	writemb_size="$(( writemb / 2 ))MB"
 	if [[ $writemb_size == "1024MB" ]]; then
 		writemb_size="1.0GB"
@@ -420,7 +421,7 @@ print_system_info() {
 }
 
 print_end_time() {
-	end=$(date +%s) 
+	end=$(date +%s)
 	time=$(( $end - $start ))
 	if [[ $time -gt 60 ]]; then
 		min=$(expr $time / 60)
