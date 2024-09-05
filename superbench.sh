@@ -8,7 +8,7 @@
 #
 # URL: https://www.oldking.net/350.html
 #
-set -x
+#set -x
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
