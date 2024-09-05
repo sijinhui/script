@@ -28,23 +28,23 @@ def GetGeoioInfo(para):
 
 
 def GetDiskInfo(para):
-    temp = ExecShell("df -h -P|grep '/'|grep -v tmpfs")[0];
-    temp1 = temp.split('\n');
-    diskInfo = [];
+    temp = ExecShell("df -h -P|grep '/'|grep -v tmpfs")[0]
+    temp1 = temp.split('\n')
+    diskInfo = []
     n = 0
     cuts = ['/mnt/cdrom', '/boot', '/boot/efi', '/dev', '/dev/shm', '/run/lock', '/run', '/run/shm', '/run/user'];
     for tmp in temp1:
         n += 1
-        disk = tmp.split();
-        if len(disk) < 5: continue;
-        if disk[1].find('M') != -1: continue;
-        if disk[1].find('K') != -1: continue;
-        if len(disk[5].split('/')) > 4: continue;
-        if disk[5] in cuts: continue;
+        disk = tmp.split()
+        if len(disk) < 5: continue
+        if disk[1].find('M') != -1: continue
+        if disk[1].find('K') != -1: continue
+        if len(disk[5].split('/')) > 4: continue
+        if disk[5] in cuts: continue
         arr = {}
-        diskInfo = [disk[1], disk[2], disk[3], disk[4], disk[5]];
+        diskInfo = [disk[1], disk[2], disk[3], disk[4], disk[5]]
 
-    print(diskInfo[int(para)]);
+    print(diskInfo[int(para)])
 
 
 def ExecShell(cmdstring, cwd=None, timeout=None, shell=True):
@@ -68,7 +68,7 @@ def ExecShell(cmdstring, cwd=None, timeout=None, shell=True):
 
 
 if __name__ == "__main__":
-    type = sys.argv[1];
+    type = sys.argv[1]
     if type == 'disk':
         GetDiskInfo(sys.argv[2])
     elif type == 'geoip':
