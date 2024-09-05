@@ -18,13 +18,13 @@ def GetIpipInfo(para):
     f = open("ip_json.json", 'r')
     ijson = json.load(f)
     jjson = ijson['location']
-    print(jjson[para.encode('utf-8')])
+    print(jjson[para])
 
 
 def GetGeoioInfo(para):
     ip_api = urlopen(r'http://ip-api.com/json')
     ijson = json.loads(ip_api.read())
-    print(ijson[para.encode('utf-8')])
+    print(ijson[para])
 
 
 def GetDiskInfo(para):
